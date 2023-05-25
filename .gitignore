@@ -11,3 +11,7 @@
 **/.idea/tasks.xml
 *.idea
 /.idea/
+/env
+.vscode
+__pycache__/
+.pytest_cache/

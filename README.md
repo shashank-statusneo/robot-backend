@@ -12,9 +12,6 @@ pip install -r requirements.txt
 DATABASE_URL=mysql+mysqlconnector://puneet:1m2p3k4n@localhost:3306/starter_kit
 TESTING_DATABASE_URL=mysql+mysqlconnector://puneet:1m2p3k4n@localhost:3306/starter_kit_test
 SECRET_KEY=your secret key
-CACHE_REDIS_HOST=redis-host
-CACHE_REDIS_PORT=redis-port
-CACHE_REDIS_DB=0
 ```
 * Migrate Database
 ```commandline
@@ -139,7 +136,6 @@ PS C:\Users\PuneetDixit\Desktop\starter-kit> coverage run --source=main -m pytes
 
 =============================================================== test session starts ===============================================================
 platform win32 -- Python 3.10.9, pytest-7.3.0, pluggy-1.0.0 -- C:\Users\PuneetDixit\Desktop\Starter App\venv\Scripts\python.exe
-cachedir: .pytest_cache
 rootdir: C:\Users\PuneetDixit\Desktop\user-login
 configfile: pytest.ini
 plugins: cov-4.0.0, mock-3.10.0

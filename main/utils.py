@@ -1,5 +1,8 @@
 import operator
 from datetime import datetime
+import pandas as pd
+from json import loads
+
 
 from flask import request
 from flask_sqlalchemy import SQLAlchemy
@@ -197,3 +200,9 @@ def get_query_including_filters(db: SQLAlchemy, model: type, filter_dict: dict):
         else:
             add_filters_using_mapping(model, conditions, filters, operator_key)
     return query.filter(*filters)
+
+
+def csv_to_dict(csv_file):
+    csv_data = pd.read_csv(csv_file).to_json(orient="records")
+
+    return loads(csv_data)

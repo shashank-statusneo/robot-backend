@@ -1,8 +1,8 @@
 from flask import Blueprint, jsonify, request
 from flask_jwt_extended import jwt_required
 from flask_restx import Namespace
+from flask.views import MethodView
 
-from main.cache import CacheResource
 from main.modules.user.controller import UserController
 from main.modules.user.schema_validator import UpdateProfile
 from main.utils import get_data_from_request_or_raise_validation_error
@@ -10,7 +10,7 @@ from main.utils import get_data_from_request_or_raise_validation_error
 auth_router = Blueprint("auth", __name__)
 
 
-class Profile(CacheResource):
+class Profile(MethodView):
     method_decorators = [jwt_required()]
 
     def get(self):
@@ -30,7 +30,7 @@ class Profile(CacheResource):
         return jsonify(msg="success")
 
 
-class Profiles(CacheResource):
+class Profiles(MethodView):
     method_decorators = [jwt_required()]
 
     def get(self):
@@ -41,7 +41,7 @@ class Profiles(CacheResource):
         return jsonify(UserController.get_profiles())
 
 
-class Profiles2(CacheResource):
+class Profiles2(MethodView):
     method_decorators = [jwt_required()]
 
     def get(self, user_id: int):

@@ -11,6 +11,20 @@ class BaseModel(db.Model):
     updated_at = db.Column(db.DateTime, default=None, onupdate=db.func.now())
 
     @classmethod
+    def bulkcreate(cls, data: list):
+        """
+        This function is used to bulk create records
+        :param data:
+        :return:
+        """
+        records = []
+        for entry in data:
+            records.append(cls(**entry))
+        db.session.add_all(records)
+        db.session.commit()
+        return records
+
+    @classmethod
     def create(cls, data: dict) -> db.Model:
         """
         This function is used to create the record.

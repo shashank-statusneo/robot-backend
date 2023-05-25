@@ -2,14 +2,15 @@ import os
 from datetime import timedelta
 
 import yaml
-from dotenv import load_dotenv
+
+# from dotenv import load_dotenv
 from yaml.loader import Loader
 
 basedir = os.path.abspath(os.path.dirname(__file__))
 
-
-dotenv_path = os.path.join(os.path.expanduser("~"), "starter-kit.env")
-load_dotenv(dotenv_path)
+# Load .env file from project directory
+# dotenv_path = os.path.join(os.path.expanduser("~"), "starter-kit.env")
+# load_dotenv(dotenv_path)
 
 env = os.getenv("FLASK_ENV") or "dev"
 
@@ -60,14 +61,4 @@ class TestConfig(Config):
     SQLALCHEMY_DATABASE_URI = os.environ.get("TESTING_DATABASE_URL")
 
 
-class CacheConfig:
-    CACHE_TYPE = "redis"
-    CACHE_REDIS_HOST = os.environ.get("CACHE_REDIS_HOST")
-    CACHE_REDIS_PORT = os.environ.get("CACHE_REDIS_PORT")
-    CACHE_REDIS_DB = os.environ.get("CACHE_REDIS_DB")
-    CACHE_DEFAULT_TIMEOUT = config.get("CACHE_DEFAULT_TIMEOUT")
-
-
-config_by_name = dict(
-    dev=serialize(DevConfig), test=serialize(TestConfig), prod=serialize(ProdConfig), cache=serialize(CacheConfig)
-)
+config_by_name = dict(dev=serialize(DevConfig), test=serialize(TestConfig), prod=serialize(ProdConfig))
