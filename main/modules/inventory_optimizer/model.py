@@ -1,5 +1,5 @@
 from main.db import BaseModel, db
-from sqlalchemy import LargeBinary
+from sqlalchemy import BLOB
 
 
 class MasterData(BaseModel):
@@ -12,7 +12,7 @@ class MasterData(BaseModel):
     file_name = db.Column(db.String(100), nullable=False)
     file_type = db.Column(db.String(50), nullable=False)
     file_ext = db.Column(db.String(50))
-    file_object = db.Column(LargeBinary)
+    file_object = db.Column(BLOB)
     user_id = db.Column(db.ForeignKey("auth_user.id"))
     user = db.relationship("AuthUser", backref=db.backref("master_data", lazy=True))
 

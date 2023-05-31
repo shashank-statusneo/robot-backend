@@ -10,6 +10,17 @@ from main.modules.auth.controller import AuthUserController
 from main.utils import get_data_from_request_or_raise_validation_error, csv_to_dict
 from main.exceptions import CustomValidationError
 
+from main.modules.inventory_optimizer.mock_api_result import api_response
+
+
+class AlgorithmMockApi(Resource):
+    def post(self):
+        """
+        Mock API for algorithm result
+        """
+        response = make_response(jsonify({"data": api_response}), 200)
+        return response
+
 
 class InventoryUploadApi(Resource):
     method_decorators = [jwt_required()]
@@ -56,6 +67,9 @@ class InventoryUploadApi(Resource):
         response = make_response(jsonify({"message": "Inventory added", "master_id": master_id}), 201)
         return response
 
+
+algorithm_mock_namespace = Namespace("", description="Mock Api for Algorithm")
+algorithm_mock_namespace.add_resource(AlgorithmMockApi, "/mock/algorithm")
 
 inventory_namespace = Namespace("inventory", description="Inventory Operations")
 inventory_namespace.add_resource(InventoryUploadApi, "/upload")
