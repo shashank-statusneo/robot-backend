@@ -5,10 +5,13 @@ api_response = {
         "reorder_point": 22.0,
         "reorder_qty": 36.0,
     },
-    "policy_detail": {"vendor": "RIL3928", "cost": 72200, "order_level": 22.0, "reorder_qty": 36.0},
+    "policy_detail": [
+        {"vendor": "RIL3928", "cost": 72200, "order_level": 22.0, "reorder_qty": 36.0},
+        {"vendor": "RIL3928", "cost": 72200, "order_level": 22.0, "reorder_qty": 36.0},
+    ],
     "simulation_output": [
         {
-            "data": "2023-03-26",
+            "date": "2023-03-26",
             "inventory_level": 58.0,
             "daily_demand": 0.0,
             "orders_fulfilled": 0.0,
@@ -18,7 +21,7 @@ api_response = {
             "po_received_on": 0.0,
         },
         {
-            "data": "2023-03-27",
+            "date": "2023-03-27",
             "inventory_level": 56.0,
             "daily_demand": 2.0,
             "orders_fulfilled": 2.0,
@@ -28,7 +31,7 @@ api_response = {
             "po_received_on": 0.0,
         },
         {
-            "data": "2023-03-28",
+            "date": "2023-03-28",
             "inventory_level": 53.0,
             "daily_demand": 3.0,
             "orders_fulfilled": 3.0,
@@ -38,7 +41,7 @@ api_response = {
             "po_received_on": 0.0,
         },
         {
-            "data": "2023-03-29",
+            "date": "2023-03-29",
             "inventory_level": 48.0,
             "daily_demand": 5.0,
             "orders_fulfilled": 5.0,
@@ -48,7 +51,7 @@ api_response = {
             "po_received_on": 0.0,
         },
         {
-            "data": "2023-03-30",
+            "date": "2023-03-30",
             "inventory_level": 46.0,
             "daily_demand": 2.0,
             "orders_fulfilled": 2.0,
@@ -58,7 +61,7 @@ api_response = {
             "po_received_on": 0.0,
         },
         {
-            "data": "2023-03-31",
+            "date": "2023-03-31",
             "inventory_level": 43.0,
             "daily_demand": 3.0,
             "orders_fulfilled": 3.0,
@@ -68,7 +71,7 @@ api_response = {
             "po_received_on": 0.0,
         },
         {
-            "data": "2023-04-01",
+            "date": "2023-04-01",
             "inventory_level": 41.0,
             "daily_demand": 2.0,
             "orders_fulfilled": 2.0,
@@ -78,7 +81,7 @@ api_response = {
             "po_received_on": 0.0,
         },
         {
-            "data": "2023-04-02",
+            "date": "2023-04-02",
             "inventory_level": 28.0,
             "daily_demand": 3.0,
             "orders_fulfilled": 3.0,
@@ -88,7 +91,7 @@ api_response = {
             "po_received_on": 0.0,
         },
         {
-            "data": "2023-04-03",
+            "date": "2023-04-03",
             "inventory_level": 35.0,
             "daily_demand": 3.0,
             "orders_fulfilled": 3.0,
@@ -98,7 +101,7 @@ api_response = {
             "po_received_on": 0.0,
         },
         {
-            "data": "2023-04-04",
+            "date": "2023-04-04",
             "inventory_level": 34.0,
             "daily_demand": 1.0,
             "orders_fulfilled": 1.0,
@@ -108,7 +111,7 @@ api_response = {
             "po_received_on": 0.0,
         },
         {
-            "data": "2023-04-05",
+            "date": "2023-04-05",
             "inventory_level": 32.0,
             "daily_demand": 2.0,
             "orders_fulfilled": 2.0,
