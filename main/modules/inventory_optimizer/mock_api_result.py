@@ -4,10 +4,11 @@ api_response = {
         "total_purchase_value": 72200.0,
         "reorder_point": 22.0,
         "reorder_qty": 36.0,
+        "safety_stock": 12.0,
     },
     "policy_detail": [
-        {"vendor": "RIL3928", "cost": 72200, "order_level": 22.0, "reorder_qty": 36.0},
-        {"vendor": "RIL3928", "cost": 72200, "order_level": 22.0, "reorder_qty": 36.0},
+        {"order_date": "2023-03-26", "vendor": "RIL3928", "cost": 72200, "order_level": 22.0, "reorder_qty": 36.0},
+        # {"vendor": "RIL3928", "cost": 72200, "order_level": 22.0, "reorder_qty": 36.0},
     ],
     "simulation_output": [
         {
