@@ -1,4 +1,8 @@
-from main.modules.inventory_optimizer.model import MasterData, DemandForecast, Vendor
+from main.modules.inventory_optimizer.model import (
+    MasterData,
+    DemandForecast,
+    Vendor,
+)
 
 
 class MasterDataController:

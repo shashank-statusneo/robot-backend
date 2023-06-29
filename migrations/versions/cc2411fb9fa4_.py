@@ -1,8 +1,8 @@
-"""new migration
+"""empty message
 
-Revision ID: 20def5b0680b
+Revision ID: cc2411fb9fa4
 Revises: 
-Create Date: 2023-05-25 14:25:13.534348
+Create Date: 2023-06-12 11:31:25.636166
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = '20def5b0680b'
+revision = 'cc2411fb9fa4'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -58,7 +58,6 @@ def upgrade():
     sa.UniqueConstraint('username')
     )
     op.create_table('master_data',
-    sa.Column('file_id', sa.Integer(), nullable=False),
     sa.Column('file_name', sa.String(length=100), nullable=False),
     sa.Column('file_type', sa.String(length=50), nullable=False),
     sa.Column('file_ext', sa.String(length=50), nullable=True),
@@ -77,6 +76,7 @@ def upgrade():
     sa.Column('month_week', sa.Integer(), nullable=False),
     sa.Column('article', sa.String(length=50), nullable=False),
     sa.Column('site', sa.String(length=50), nullable=False),
+    sa.Column('predict', sa.Integer(), nullable=False),
     sa.Column('user_id', sa.Integer(), nullable=True),
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('created_at', sa.DateTime(), server_default=sa.text('now()'), nullable=True),
