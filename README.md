@@ -1,6 +1,17 @@
-# Robot Framework Example using Python in Flask framework
+<h1>Robot Framework Example using Python in Flask framework</h1>
+<hr><h2>General Information</h2>
+<hr><ul>
+<li>Backend Build with Flask Framework written in Python</li>
+</ul><h2>Technologies Used</h2>
+<hr><ul>
+<li>Flask</li>
+</ul><ul>
+<li>Python</li>
+</ul><ul>
+<li>MySQL</li>
+</ul>
 
-## Server Setup
+## Backend Setup
 
 - Install Python 3.10
 - Create and activate Virtual Environment
@@ -69,4 +80,21 @@ flask db downgrade 'migration_version'
 
 ```commandline
 flask run
+```
+
+## UI Setup
+
+- Install Node JS and NPM
+- Clone Front end Git Repository
+  ```commandline
+   git clone https://github.com/shashank-statusneo/robot-frontend.git
+  ```
+- Install Project Dependencies
+  ```commandline
+  npm i
+  ```
+- Start Server
+
+```commandline
+npm run start
 ```
