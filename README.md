@@ -82,6 +82,15 @@ flask db downgrade 'migration_version'
 flask run
 ```
 
+## Robot Framework Setup
+
+- Install Webdriver kits for browser
+
+```commandline
+webdrivermanager firefox chrome --linkpath /usr/local/bin
+
+```
+
 ## UI Setup
 
 - Install Node JS and NPM
