@@ -1,0 +1,43 @@
+{
+    "[python]": {
+        "editor.formatOnType": true,
+        "editor.defaultFormatter": "ms-python.black-formatter"
+    },
+    "terminal.integrated.defaultProfile.windows": "Command Prompt",
+    "java.completion.importOrder": [
+        "#",
+        "java",
+        "javax",
+        "org",
+        "com",
+        ""
+    ],
+    "files.autoSave": "afterDelay",
+    "editor.formatOnSave": true,
+    "[typescriptreact]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "[javascript]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "[json]": {
+        "editor.defaultFormatter": "vscode.json-language-features"
+    },
+    "[jsonc]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "black-formatter.args": [
+        "--line-length=79"
+    ],
+    "python.formatting.blackArgs": [
+        "--line-length=79"
+    ],
+    "python.linting.enabled": true,
+    "python.formatting.provider": "black",
+    "python.linting.flake8CategorySeverity.E": "Hint",
+    "python.linting.flake8CategorySeverity.F": "Hint",
+    "python.linting.flake8Enabled": true,
+    "yaml.customTags": [
+        "!timedelta"
+    ]
+}
