@@ -17,7 +17,9 @@ def allowed_roles(roles: list):
         @wraps(f)
         def decorated(*args, **kwargs):
             identity = get_jwt_identity()
-            auth_user = AuthUser.query.filter_by(id=identity["user_id"]).first()
+            auth_user = AuthUser.query.filter_by(
+                id=identity["user_id"]
+            ).first()
             if not auth_user:
                 return jsonify({"error": "User Not Found !!"}), 403
             elif auth_user.role not in roles:

@@ -1,6 +1,6 @@
 from flask import Blueprint, jsonify, request
 from flask_jwt_extended import jwt_required
-from flask_restx import Namespace
+from flask_restx import Namespace, Resource
 from flask.views import MethodView
 
 from main.modules.user.controller import UserController
@@ -25,13 +25,15 @@ class Profile(MethodView):
         This view function is used to update the profile of current user.
         :return:
         """
-        data = get_data_from_request_or_raise_validation_error(UpdateProfile, request.json)
+        data = get_data_from_request_or_raise_validation_error(
+            UpdateProfile, request.json
+        )
         UserController.update_user_profile(data)
         return jsonify(msg="success")
 
 
-class Profiles(MethodView):
-    method_decorators = [jwt_required()]
+class Profiles(Resource):
+    # method_decorators = [jwt_required()]
 
     def get(self):
         """
@@ -58,7 +60,9 @@ class Profiles2(MethodView):
         :param user_id:
         :return:
         """
-        data = get_data_from_request_or_raise_validation_error(UpdateProfile, request.json)
+        data = get_data_from_request_or_raise_validation_error(
+            UpdateProfile, request.json
+        )
         UserController.update_user_profile(data, user_id)
         return jsonify(msg="success")
 

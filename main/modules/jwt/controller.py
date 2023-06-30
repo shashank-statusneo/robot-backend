@@ -33,10 +33,14 @@ class JWTController:
         ttype = token["type"]
         identity = get_jwt_identity()
         user_id = identity["user_id"]
-        return TokenBlocklist.create({"jti": jti, "type": ttype, "user_id": user_id})
+        return TokenBlocklist.create(
+            {"jti": jti, "type": ttype, "user_id": user_id}
+        )
 
     @classmethod
-    def token_revoked_check(cls, jwt_header: type, jwt_payload: dict) -> TokenBlocklist or None:
+    def token_revoked_check(
+        cls, jwt_header: type, jwt_payload: dict
+    ) -> TokenBlocklist or None:
         """
         This function is used to check the jwt token  is revoked or not (If it is present in
         the TokenBlocklist then it is revoked.)
@@ -67,4 +71,8 @@ class JWTController:
         This function is used to get a new access token using refresh token.
         :return:
         """
-        return {"access_token": create_access_token(identity=cls.get_user_identity())}
+        return {
+            "access_token": create_access_token(
+                identity=cls.get_user_identity()
+            )
+        }

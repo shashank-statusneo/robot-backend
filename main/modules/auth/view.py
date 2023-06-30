@@ -3,7 +3,11 @@ from flask_jwt_extended import jwt_required
 from flask_restx import Namespace, Resource
 
 from main.modules.auth.controller import AuthUserController
-from main.modules.auth.schema_validator import LogInSchema, SignUpSchema, UpdatePassword
+from main.modules.auth.schema_validator import (
+    LogInSchema,
+    SignUpSchema,
+    UpdatePassword,
+)
 from main.utils import get_data_from_request_or_raise_validation_error
 
 
@@ -13,7 +17,10 @@ class SignUp(Resource):
         This view function is used to create a new user.
         :return user_id:
         """
-        data = get_data_from_request_or_raise_validation_error(SignUpSchema, request.json)
+
+        data = get_data_from_request_or_raise_validation_error(
+            SignUpSchema, request.json
+        )
         user, error_data = AuthUserController.create_new_user(data)
         if not user:
             return make_response(jsonify(error_data), 409)
@@ -26,7 +33,9 @@ class Login(Resource):
         This view function is used to get tokens (access and refresh) using valid user credentials.
         :return:
         """
-        data = get_data_from_request_or_raise_validation_error(LogInSchema, request.json)
+        data = get_data_from_request_or_raise_validation_error(
+            LogInSchema, request.json
+        )
         token, error_msg = AuthUserController.get_token(data)
         if error_msg:
             return make_response(jsonify(error=error_msg), 403)
@@ -52,7 +61,9 @@ class ChangePassword(Resource):
         This view function is used to change the password of logged-in user.
         :return:
         """
-        data = get_data_from_request_or_raise_validation_error(UpdatePassword, request.json)
+        data = get_data_from_request_or_raise_validation_error(
+            UpdatePassword, request.json
+        )
         response, error_msg = AuthUserController.update_user_password(data)
         if error_msg:
             return make_response(jsonify(error=error_msg), 401)

@@ -27,7 +27,9 @@ class LogInSchema(Schema):
     @validates_schema
     def validate_at_least_one_email_and_username(self, data, **kwargs):
         if not data.get("email") and not data.get("username"):
-            raise ValidationError("At least one param is required from ['email', 'username']")
+            raise ValidationError(
+                "At least one param is required from ['email', 'username']"
+            )
 
 
 class UpdatePassword(Schema):

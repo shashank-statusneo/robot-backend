@@ -31,7 +31,7 @@ class AuthUserController:
         return AuthUser.query.filter_by(id=identity["user_id"]).first()
 
     @classmethod
-    def create_new_user(cls, user_data: dict) -> (AuthUser, dict):
+    def create_new_user(cls, user_data: dict) -> tuple[AuthUser, dict]:
         """
         This function is used to create new user in the auth user table. Also, it is used to check if
         username or email already exists or not.
@@ -39,34 +39,52 @@ class AuthUserController:
         :return (AuthUser, error_data):
         """
         error_data = {}
-        user_by_email = AuthUser.query.filter_by(email=user_data["email"]).first()
-        user_by_username = AuthUser.query.filter_by(username=user_data["username"]).first()
+        user_by_email = AuthUser.query.filter_by(
+            email=user_data["email"]
+        ).first()
+        user_by_username = AuthUser.query.filter_by(
+            username=user_data["username"]
+        ).first()
         if user_by_email or user_by_username:
             param = "username" if user_by_username else "email"
             error_data["error"] = f"user already exists with provided {param}"
         else:
-            user_data["password"] = generate_password_hash(user_data["password"])
+            user_data["password"] = generate_password_hash(
+                user_data["password"]
+            )
             auth_user = AuthUser.create(user_data)
             return auth_user, error_data
         return None, error_data
 
     @classmethod
-    def update_user_password(cls, update_password_data: dict) -> (dict, str):
+    def update_user_password(
+        cls, update_password_data: dict
+    ) -> tuple[dict, str]:
         """
         This function is used to change the password.
         :param update_password_data:
         :return dict, error_msg:
         """
         auth_user = cls.get_current_auth_user()
-        if check_password_hash(auth_user.password, update_password_data["old_password"]):
-            if check_password_hash(auth_user.password, update_password_data["new_password"]):
+        if check_password_hash(
+            auth_user.password, update_password_data["old_password"]
+        ):
+            if check_password_hash(
+                auth_user.password, update_password_data["new_password"]
+            ):
                 return {}, "new password can not same as old password"
-            auth_user.update({"password": generate_password_hash(update_password_data["new_password"])})
+            auth_user.update(
+                {
+                    "password": generate_password_hash(
+                        update_password_data["new_password"]
+                    )
+                }
+            )
             return {"status": "success"}, ""
         return {}, "Old password is invalid"
 
     @classmethod
-    def get_token(cls, login_data: dict) -> [dict, str]:
+    def get_token(cls, login_data: dict) -> tuple[dict, str]:
         """
         This function is used to get the token using email or username and password. It returns
         access_token and refresh_token.
@@ -74,9 +92,14 @@ class AuthUserController:
         :return dict:
         """
         token = {}
-        email_or_username = login_data.get("username") or login_data.get("email")
+        email_or_username = login_data.get("username") or login_data.get(
+            "email"
+        )
         auth_user = AuthUser.query.filter(
-            or_(AuthUser.email == email_or_username, AuthUser.username == email_or_username)
+            or_(
+                AuthUser.email == email_or_username,
+                AuthUser.username == email_or_username,
+            )
         ).first()
         if not auth_user:
             return token, f"user not found with {email_or_username}"
@@ -93,7 +116,9 @@ class AuthUserController:
         :return:
         """
         blocked_token = JWTController.block_jwt_token()
-        return {"msg": f"{blocked_token.type.capitalize()} token successfully revoked"}
+        return {
+            "msg": f"{blocked_token.type.capitalize()} token successfully revoked"
+        }
 
     @classmethod
     def refresh_access_token(cls) -> dict:

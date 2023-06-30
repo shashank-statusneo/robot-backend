@@ -3,14 +3,9 @@ from datetime import timedelta
 
 import yaml
 
-# from dotenv import load_dotenv
 from yaml.loader import Loader
 
 basedir = os.path.abspath(os.path.dirname(__file__))
-
-# Load .env file from project directory
-# dotenv_path = os.path.join(os.path.expanduser("~"), "starter-kit.env")
-# load_dotenv(dotenv_path)
 
 env = os.getenv("FLASK_ENV") or "dev"
 
@@ -27,7 +22,9 @@ def construct_timedelta(loader, node):
     return timedelta(**{value.split()[1]: int(value.split()[0])})
 
 
-yaml.add_constructor("!timedelta", construct_timedelta)  # handle timedelta in yaml file.
+yaml.add_constructor(
+    "!timedelta", construct_timedelta
+)  # handle timedelta in yaml file.
 
 with open(os.path.join(basedir, env + ".yaml")) as config_file:
     config = yaml.load(config_file, Loader=Loader)
@@ -35,7 +32,9 @@ with open(os.path.join(basedir, env + ".yaml")) as config_file:
 
 def serialize(cls):
     return {
-        attr: getattr(cls, attr) for attr in dir(cls) if not callable(getattr(cls, attr)) and not attr.startswith("__")
+        attr: getattr(cls, attr)
+        for attr in dir(cls)
+        if not callable(getattr(cls, attr)) and not attr.startswith("__")
     }
 
 
@@ -58,7 +57,10 @@ class ProdConfig(Config):
 
 class TestConfig(Config):
     DEBUG = True
-    SQLALCHEMY_DATABASE_URI = os.environ.get("TESTING_DATABASE_URL")
 
 
-config_by_name = dict(dev=serialize(DevConfig), test=serialize(TestConfig), prod=serialize(ProdConfig))
+config_by_name = dict(
+    dev=serialize(DevConfig),
+    test=serialize(TestConfig),
+    prod=serialize(ProdConfig),
+)

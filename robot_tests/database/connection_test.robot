@@ -3,7 +3,7 @@ Library     DatabaseLibrary
 
 
 *** Variables ***
-${DBName}           inventory_optimizer
+${DBName}           robot
 ${DBUser}           root
 ${DBPassword}       password
 ${DBHost}           127.0.0.1

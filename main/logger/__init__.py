@@ -24,7 +24,9 @@ def get_handler(name: str, log_level=INFO):
     create_base_dir_if_not_exists()
     handler = logging.FileHandler(LOGS_BASE_DIR + f"/{name}.log")
     handler.setLevel(log_level)
-    handler.setFormatter(logging.Formatter("%(asctime)s %(levelname)s: %(message)s"))
+    handler.setFormatter(
+        logging.Formatter("%(asctime)s %(levelname)s: %(message)s")
+    )
     return handler
 
 

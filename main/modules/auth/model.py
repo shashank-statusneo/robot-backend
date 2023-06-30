@@ -20,4 +20,8 @@ class AuthUser(BaseModel):
 
 @event.listens_for(AuthUser, "after_insert")
 def auth_user_created_listener(mapper, connection, target):
-    connection.execute(User.__table__.insert().values(id=target.id, username=target.username, email=target.email))
+    connection.execute(
+        User.__table__.insert().values(
+            id=target.id, username=target.username, email=target.email
+        )
+    )
